@@ -1,11 +1,23 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
+import { defaultClothingItems } from "../../utils/constants";
+import ItemCard from "../ItemCard/ItemCard";
 
-function Main() {
+// Main.jsx is a childe of App
+function Main({ weatherData }) {
   return (
     <main>
       <WeatherCard />
       <section className="cards">
         <p className="cards__text">Today is 75° F / You may want to wear:</p>
+        <ul className="cards__list">
+          {defaultClothingItems
+            .filter((item) => {
+              return item.weather === weatherData.type;
+            })
+            .map((item) => {
+              return <ItemCard key={item._id} item={item} />; // id goes here, in component
+            })}
+        </ul>
       </section>
     </main>
   );
