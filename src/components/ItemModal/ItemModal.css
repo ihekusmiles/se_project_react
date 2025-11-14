@@ -1,0 +1,36 @@
+.modal__content_type_image {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.modal__close_type_preview {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.modal__image {
+  display: block;
+  height: 498px;
+  width: 498px;
+}
+
+.modal__footer {
+  background: #fff;
+  margin: 0;
+  padding: 20px 0 32px 32px;
+}
+
+.modal__caption {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.modal__weather {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 12px 0 0 0;
+}
