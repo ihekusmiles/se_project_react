@@ -1,10 +1,32 @@
-import sunny from "../../assets/sunny.png";
+// import sunny from "../../assets/sunny.png";
+import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 
-function WeatherCard() {
+function WeatherCard({ weatherData }) {
+  const filteredOptions = weatherOptions.filter((option) => {
+    return (
+      option.day === weatherData.isDay &&
+      option.condition === weatherData.condition
+    );
+  });
+  // Setting default behavior if no condition is found with API call
+  let weatherOption;
+  if (filteredOptions.length === 0) {
+    weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
+  } else {
+    weatherOption = filteredOptions[0];
+  }
+  // const weatherOption = filteredOptions[0];
+
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">75° F</p>
-      <img src={sunny} alt="Sunny weather" className="weather-card__image" />
+      <p className="weather-card__temp">{weatherData.temp.F}° F</p>
+      <img
+        src={weatherOption?.url}
+        alt={`Card showing ${weatherOption?.day ? "day" : "night"}time ${
+          weatherOption?.condition
+        } weather`}
+        className="weather-card__image"
+      />
     </section>
   );
 }
