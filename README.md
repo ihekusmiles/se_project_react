@@ -1,8 +1,50 @@
-# React + Vite
+# Project 10: WTWR (What To Wear)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Overview
 
-Currently, two official plugins are available:
+- Intro
+- Project links
+- Project description
+- Project features
+- Figma
+- Images
+- Javascript Integration
+- API integration
+- Plan on improving project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Intro**
+
+This project aims to provide an interactive web application that aims to inform users what to wear depending on the weather conditions for a specified city.
+
+## Project links
+
+TO BE UPDATED
+
+## Project description
+
+In this project users are given suggestions on what to wear based on the weather conditions in a given city. This project serves as a transition from a static front-end to a dynamic, API-driven application. In terms of web development, some technologies used include HTML, CSS, JavaScript, React, NPM, and modules. This is a priliminary stage and further improvements will come.
+
+## Project features
+
+- Semantic HTML5
+- CSS
+- Media Queries
+- Responsive Design
+- JavaScript
+- React
+- API integration
+
+**Figma**
+
+In order to make the layout, Figma was used to extract all the necessary design details, eg. font sizes, styles, padding/margin distances etc. The link below:
+
+- [Link to the project on Figma](https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-Project--WTWR?node-id=311-433&p=f&t=gh7N0LHTLVLCkhW0-0)
+
+**Images**
+
+TO BE UPDATED
+
+## Plan on improving project
+
+- I will be adding responsive design in order to show this app correctly on mobile apps or smaller screens.
+- Further improvements like liking, and adding card will be added.
