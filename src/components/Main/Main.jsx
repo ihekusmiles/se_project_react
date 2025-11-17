@@ -1,10 +1,8 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
-import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
-import Footer from "../Footer/Footer";
 
-// Main.jsx is a childe of App
-function Main({ weatherData, handleCardClick }) {
+// Main.jsx is a child of App
+function Main({ weatherData, handleCardClick, clothingItems }) {
   return (
     <>
       <main>
@@ -14,7 +12,7 @@ function Main({ weatherData, handleCardClick }) {
             Today is {weatherData.temp.F}° F. You may want to wear:
           </p>
           <ul className="cards__list">
-            {defaultClothingItems
+            {clothingItems
               .filter((item) => {
                 return item.weather === weatherData.type;
               })
@@ -25,12 +23,11 @@ function Main({ weatherData, handleCardClick }) {
                     item={item}
                     onCardClick={handleCardClick}
                   />
-                ); // id goes here, in component
+                );
               })}
           </ul>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

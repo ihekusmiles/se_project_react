@@ -134,7 +134,7 @@ const defaultClothingItems = [
   {
     _id: 11,
     name: "Shorts",
-    weather: "Hot",
+    weather: "hot",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba",
   },
   {
@@ -176,4 +176,5 @@ export const coordinates = {
   longitude: -73.393837,
 };
 
-export const APIkey = "e235ceaf8aa7d02bfd460a31708ae26f";
+// Using camelCase for variables per the checklist
+export const apiKey = "e235ceaf8aa7d02bfd460a31708ae26f";

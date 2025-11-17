@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
-import { coordinates, APIkey } from "../../utils/constants";
+import {
+  coordinates,
+  apiKey,
+  defaultClothingItems,
+} from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
@@ -14,6 +19,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -30,7 +36,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
@@ -69,13 +75,19 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+          clothingItems={clothingItems}
+        />
+        <Footer />
       </div>
       <ModalWithForm
+        isOpen={activeModal === "add-garment"}
+        onClose={closeActiveModal}
+        name="add-garment"
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
-        closeActiveModal={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">
           Name{" "}
@@ -102,6 +114,7 @@ function App() {
             <input
               name="weather"
               type="radio"
+              value="hot"
               className="modal__radio-input"
               id="hot"
               defaultChecked
@@ -116,6 +129,7 @@ function App() {
             <input
               name="weather"
               type="radio"
+              value="cold"
               className="modal__radio-input"
               id="cold"
             />
@@ -129,6 +143,7 @@ function App() {
             <input
               name="weather"
               type="radio"
+              value="warm"
               className="modal__radio-input"
               id="warm"
             />
