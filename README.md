@@ -63,3 +63,4 @@ Users can click on each card and preview a bigger version of it by clicking on i
 - I will be adding responsive design in order to show this app correctly on mobile apps or smaller screens.
 - Further improvements like liking, and adding card will be added.
 - Form validation will also be implemented using Javascript
+- Style it differently
