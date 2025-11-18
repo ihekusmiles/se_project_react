@@ -7,6 +7,9 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+.card:hover {
+  cursor: pointer;
+}
 
 .card__name {
   position: absolute;

@@ -19,6 +19,9 @@
   font-weight: 700;
   line-height: 24px;
 }
+.header__add-clothes-btn:hover {
+  cursor: pointer;
+}
 
 .header__user-container {
   display: flex;

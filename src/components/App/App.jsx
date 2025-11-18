@@ -95,6 +95,7 @@ function App() {
             type="text"
             className="modal__input"
             id="name"
+            name="name"
             placeholder="Name"
           />
         </label>
@@ -104,6 +105,7 @@ function App() {
             type="url"
             className="modal__input"
             id="imageUrl"
+            name="imageUrl"
             placeholder="Image URL"
           />
         </label>

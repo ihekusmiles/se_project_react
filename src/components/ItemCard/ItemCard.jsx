@@ -17,5 +17,3 @@ function ItemCard({ item, onCardClick }) {
 }
 
 export default ItemCard;
-
-// Watch Part 11 minute 13:05 for explanation on how item is passed

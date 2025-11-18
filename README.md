@@ -14,11 +14,11 @@
 
 **Intro**
 
-This project aims to provide an interactive web application that aims to inform users what to wear depending on the weather conditions for a specified city.
+This project aims to provide an interactive web application that aims to inform users what to wear depending on the weather conditions for a specified city. Additionally, users will be able to add new garment depending on the weather using a form.
 
 ## Project links
 
-TO BE UPDATED
+- [Github Page link to the project](https://ihekusmiles.github.io/se_project_react/)
 
 ## Project description
 
@@ -42,9 +42,24 @@ In order to make the layout, Figma was used to extract all the necessary design 
 
 **Images**
 
-TO BE UPDATED
+The following screenshot shows what the page needs to look like at 1440px:
+
+![Page at 1440px](./src/assets/1440px.png)
+
+A users location is automatically detected and displayed here along with the city's current temperature:
+
+![Close up info](./src/assets/temp-location.JPG)
+
+Users will be able to add clothes depending on the weather using the +Add clothes. This button brings up a form:
+
+![Add clothes form](./src/assets/form.JPG)
+
+Users can click on each card and preview a bigger version of it by clicking on it:
+
+![Card preview](./src/assets/preview.JPG)
 
 ## Plan on improving project
 
 - I will be adding responsive design in order to show this app correctly on mobile apps or smaller screens.
 - Further improvements like liking, and adding card will be added.
+- Form validation will also be implemented using Javascript
