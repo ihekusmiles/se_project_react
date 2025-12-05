@@ -1,3 +1,4 @@
+// Importing components, constants and destructured items
 import { useState, useEffect } from "react";
 import {
   coordinates,
@@ -12,6 +13,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
 function App() {
+  // UseState hooks for setting data
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999 },
@@ -21,6 +23,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
+  // Function that  adds 'preview'
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -35,6 +38,7 @@ function App() {
     setActiveModal("");
   };
 
+  // useEffect hook for getting data with coordinates/apiKey and filtering it
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
@@ -44,6 +48,7 @@ function App() {
       .catch(console.error);
   }, []);
 
+  // useEffect hook for Escape key and overlay click modal-closing features
   useEffect(() => {
     // If no modal is active, don't attach listeners
     if (!activeModal) return;
@@ -71,6 +76,7 @@ function App() {
     // Dependency array ensures this runs only when modal state changes
   }, [activeModal]);
 
+  // The HTML returned with COMPONENTS and PROPS
   return (
     <div className="page">
       <div className="page__content">

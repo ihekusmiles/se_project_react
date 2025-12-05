@@ -1,4 +1,3 @@
-// import sunny from "../../assets/sunny.png";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 
 function WeatherCard({ weatherData }) {
@@ -15,7 +14,6 @@ function WeatherCard({ weatherData }) {
   } else {
     weatherOption = filteredOptions[0];
   }
-  // const weatherOption = filteredOptions[0];
 
   return (
     <section className="weather-card">

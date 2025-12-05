@@ -13,7 +13,7 @@
 }
 
 .header__add-clothes-btn {
-  margin: 8px 0 8px auto;
+  margin: 8px 0 8px 20px;
   padding: 0;
   border: 0;
   font-weight: 700;
@@ -32,4 +32,41 @@
 .header__username {
   margin: 0 0 0 20px;
   line-height: 100%;
+}
+
+@media screen and (max-width: 375px) {
+  .header {
+    max-width: 343px;
+    max-height: 44px;
+    /* min-width: 343px; */
+    padding: 0;
+  }
+
+  /* .header__date-and-location {
+    visibility: hidden;
+  }
+
+  .header__alternative {
+    visibility: visible;
+  }
+
+  .header__add-clothes-btn {
+    visibility: hidden;
+  }
+
+  .header__username {
+    visibility: hidden;
+  }
+
+  .header__avatar {
+    visibility: hidden;
+  } */
+
+  /* .header__profile {
+    max-width: 44px;
+    width: 100%;
+    position: absolute;
+    top: 18px;
+    right: 16px;
+  } */
 }
