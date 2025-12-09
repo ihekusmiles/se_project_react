@@ -11,17 +11,26 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   // UseState hooks for setting data
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999 },
+    temp: { F: 999, C: 999 },
+    condition: "",
     city: "",
+    isDay: false,
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
+  // Function that handles toggle switch change using a ternary operator
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
+  };
 
   // Function that  adds 'preview'
   const handleCardClick = (card) => {
@@ -79,91 +88,98 @@ function App() {
   // The HTML returned with COMPONENTS and PROPS
   return (
     <div className="page">
-      <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main
-          weatherData={weatherData}
-          handleCardClick={handleCardClick}
-          clothingItems={clothingItems}
-        />
-        <Footer />
-      </div>
-      <ModalWithForm
-        isOpen={activeModal === "add-garment"}
-        onClose={closeActiveModal}
-        name="add-garment"
-        title="New garment"
-        buttonText="Add garment"
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <label htmlFor="name" className="modal__label">
-          Name{" "}
-          <input
-            type="text"
-            className="modal__input"
-            id="name"
-            name="name"
-            placeholder="Name"
+        <div className="page__content">
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Main
+            weatherData={weatherData}
+            handleCardClick={handleCardClick}
+            clothingItems={clothingItems}
           />
-        </label>
-        <label htmlFor="imageUrl" className="modal__label">
-          Image{" "}
-          <input
-            type="url"
-            className="modal__input"
-            id="imageUrl"
-            name="imageUrl"
-            placeholder="Image URL"
-          />
-        </label>
-        <fieldset className="modal__radio-buttons">
-          <legend className="modal__legend">Select the weather type:</legend>
-
-          <label htmlFor="hot" className="modal__label modal__label_type_radio">
+          <Footer />
+        </div>
+        <ModalWithForm
+          isOpen={activeModal === "add-garment"}
+          onClose={closeActiveModal}
+          name="add-garment"
+          title="New garment"
+          buttonText="Add garment"
+        >
+          <label htmlFor="name" className="modal__label">
+            Name{" "}
             <input
-              name="weather"
-              type="radio"
-              value="hot"
-              className="modal__radio-input"
-              id="hot"
-              defaultChecked
+              type="text"
+              className="modal__input"
+              id="name"
+              name="name"
+              placeholder="Name"
             />
-            Hot
           </label>
-
-          <label
-            htmlFor="cold"
-            className="modal__label modal__label_type_radio"
-          >
+          <label htmlFor="imageUrl" className="modal__label">
+            Image{" "}
             <input
-              name="weather"
-              type="radio"
-              value="cold"
-              className="modal__radio-input"
-              id="cold"
+              type="url"
+              className="modal__input"
+              id="imageUrl"
+              name="imageUrl"
+              placeholder="Image URL"
             />
-            Cold
           </label>
+          <fieldset className="modal__radio-buttons">
+            <legend className="modal__legend">Select the weather type:</legend>
 
-          <label
-            htmlFor="warm"
-            className="modal__label modal__label_type_radio"
-          >
-            <input
-              name="weather"
-              type="radio"
-              value="warm"
-              className="modal__radio-input"
-              id="warm"
-            />
-            Warm
-          </label>
-        </fieldset>
-      </ModalWithForm>
-      <ItemModal
-        activeModal={activeModal}
-        card={selectedCard}
-        closeActiveModal={closeActiveModal}
-      />
+            <label
+              htmlFor="hot"
+              className="modal__label modal__label_type_radio"
+            >
+              <input
+                name="weather"
+                type="radio"
+                value="hot"
+                className="modal__radio-input"
+                id="hot"
+                defaultChecked
+              />
+              Hot
+            </label>
+
+            <label
+              htmlFor="cold"
+              className="modal__label modal__label_type_radio"
+            >
+              <input
+                name="weather"
+                type="radio"
+                value="cold"
+                className="modal__radio-input"
+                id="cold"
+              />
+              Cold
+            </label>
+
+            <label
+              htmlFor="warm"
+              className="modal__label modal__label_type_radio"
+            >
+              <input
+                name="weather"
+                type="radio"
+                value="warm"
+                className="modal__radio-input"
+                id="warm"
+              />
+              Warm
+            </label>
+          </fieldset>
+        </ModalWithForm>
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          closeActiveModal={closeActiveModal}
+        />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }

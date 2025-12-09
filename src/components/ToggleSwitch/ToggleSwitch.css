@@ -4,9 +4,11 @@
   height: 28px;
   border: 2px solid black;
   border-radius: 20px;
+  border-color: rgba(0, 0, 0, 0.5);
   margin-left: auto;
   cursor: pointer;
   overflow: hidden;
+  color: white;
 }
 
 .toggle-switch__checkbox {
@@ -19,14 +21,15 @@
   height: 28px;
   position: absolute;
   border-radius: 50%;
+
   left: 0;
   transition: all 0.2s;
 }
 
 .toggle-switch__text {
-  color: grey;
+  color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 5px;
+  top: 4px;
 }
 .toggle-switch__text_F {
   left: 8px;
@@ -36,7 +39,14 @@
   right: 7px;
 }
 
+.toggle-switch__text_color_white {
+  color: white;
+}
+
 /* Targeting .toggle-switch__circle when checkbox is checked */
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
   left: 28px;
 }
+
+/* transform: translateX(...)
+mix-blend-mode: ... */
