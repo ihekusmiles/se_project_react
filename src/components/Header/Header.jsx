@@ -28,8 +28,8 @@ function Header({ handleAddClick, weatherData }) {
           <p className="header__username">Terrence Tegegne</p>
           <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
         </div>
-
-        {/* Code below is for responsive design eg. adding the profile-btn.svg
+      </header>
+      {/* Code below is for responsive design eg. adding the profile-btn.svg
         <button
           className="header__profile-btn"
           type="button"
@@ -37,10 +37,9 @@ function Header({ handleAddClick, weatherData }) {
         >
           <img src={profile} alt="Profile button" className="header__profile" />
         </button> */}
-      </header>
-      <p className="header__date-and-location header__alternative">
+      {/* <p className="header__date-and-location header__alternative">
         {currentDate}, {weatherData.city}
-      </p>
+      </p> */}
     </>
   );
 }
