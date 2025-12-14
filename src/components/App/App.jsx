@@ -1,11 +1,7 @@
 // Importing components, constants and destructured items
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {
-  coordinates,
-  apiKey,
-  defaultClothingItems,
-} from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -13,6 +9,10 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+
+import { getItems } from "../../utils/api";
+import { addItem } from "../../utils/api";
+import { removeItem } from "../../utils/api";
 
 import Profile from "../../components/Profile/Profile";
 
@@ -27,7 +27,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   // Function that handles toggle switch change using a ternary operator
@@ -50,20 +50,23 @@ function App() {
     setActiveModal("");
   };
 
+  // Function that creates an object of input values and then
+  // adds that data to page using addItem method
   const onAddItem = (inputValues) => {
-    // call the fetch functino
-    // .then() includes all the stuff below
     const newCardData = {
       name: inputValues.name,
-      link: inputValues.link,
+      imageUrl: inputValues.imageUrl,
       weather: inputValues.weatherType,
     };
-    // Don't use newCardData
-    // The ID will be included in the response data
-
-    setClothingItems([...clothingItems, newCardData]);
-    closeActiveModal();
-    // .catch()
+    // Need to use data below because the returned 'data' contains id
+    addItem(newCardData).then((data) => {
+      console.log("About to update state with:", data);
+      console.log("Current clothingItems:", clothingItems);
+      // console.log("addItem returns:", data);
+      // console.log("Is it an array?", Array.isArray(data));
+      setClothingItems([data, ...clothingItems]);
+      closeActiveModal();
+    });
   };
 
   // useEffect hook for getting data with coordinates/apiKey and filtering it
@@ -72,6 +75,14 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+        // console.log("getItems returns:", data);
+        // console.log("Is it an array?", Array.isArray(data));
       })
       .catch(console.error);
   }, []);
