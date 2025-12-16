@@ -2,6 +2,7 @@ function ItemCard({ item, onCardClick }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
+
   // Destructure the prop (item)
   return (
     <li className="card">

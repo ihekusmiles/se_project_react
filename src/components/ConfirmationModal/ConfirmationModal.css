@@ -1,0 +1,60 @@
+.modal__confirmation-content {
+  position: relative;
+  background-color: #fff;
+  padding: 28px 28px 36px;
+  max-width: 670px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.modal__delete-confirmation-text {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  margin: 32px auto 40px;
+}
+
+.modal__delete-confirmation-text-new-row {
+  display: block;
+}
+
+.modal__close_type_confirmation {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.modal__confirmation-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__confirmation-delete-btn {
+  color: #ff4d00;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.modal__confirmation-delete-btn:hover {
+  cursor: pointer;
+}
+
+.modal__confirmation-cancel-btn {
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 20px;
+  border: 0;
+  padding: 0;
+  margin: 24px auto 24px;
+}
+
+.modal__confirmation-cancel-btn:hover {
+  cursor: pointer;
+}

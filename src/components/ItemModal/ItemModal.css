@@ -17,6 +17,7 @@
 }
 
 .modal__footer {
+  position: relative;
   background: #fff;
   margin: 0;
   padding: 20px 0 32px 32px;
@@ -33,4 +34,22 @@
   font-weight: 700;
   line-height: 24px;
   margin: 12px 0 0 0;
+}
+
+.modal__delete-item-btn {
+  position: absolute;
+  top: 24.6px;
+  right: 33.5px;
+  color: #ff4d00;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__delete-item-btn:hover {
+  cursor: pointer;
 }

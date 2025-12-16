@@ -5,11 +5,14 @@ const AddItemModal = ({ isOpen, onAddItem, onClose, buttonText }) => {
   const defaultValues = { name: "", imageUrl: "", weather: "" };
   const { values, handleChange, setValues } = useForm(defaultValues);
 
+  const resetForm = () => {
+    setValues({ name: "", imageUrl: "", weather: "" });
+  };
+
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(values);
+    onAddItem(values, resetForm); // <-Passing this to parent
   }
-  // console.log(values);
 
   return (
     <ModalWithForm
@@ -50,37 +53,39 @@ const AddItemModal = ({ isOpen, onAddItem, onClose, buttonText }) => {
 
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
           <input
-            name="weatherType"
+            name="weather"
             type="radio"
             value="hot"
             onChange={handleChange}
             className="modal__radio-input"
             id="hot"
-            defaultChecked
+            checked={values.weather === "hot"}
           />
           Hot
         </label>
 
         <label htmlFor="cold" className="modal__label modal__label_type_radio">
           <input
-            name="weatherType"
+            name="weather"
             type="radio"
             value="cold"
             onChange={handleChange}
             className="modal__radio-input"
             id="cold"
+            checked={values.weather === "cold"}
           />
           Cold
         </label>
 
         <label htmlFor="warm" className="modal__label modal__label_type_radio">
           <input
-            name="weatherType"
+            name="weather"
             type="radio"
             value="warm"
             onChange={handleChange}
             className="modal__radio-input"
             id="warm"
+            checked={values.weather === "warm"}
           />
           Warm
         </label>

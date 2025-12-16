@@ -9,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 
 import { getItems } from "../../utils/api";
 import { addItem } from "../../utils/api";
@@ -25,6 +26,7 @@ function App() {
     city: "",
     isDay: false,
   });
+
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
@@ -45,6 +47,10 @@ function App() {
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
+
+  const handleDeleteClick = () => {
+    setActiveModal("confirmation-modal");
+  };
   // Function that closes any active modal
   const closeActiveModal = () => {
     setActiveModal("");
@@ -52,23 +58,47 @@ function App() {
 
   // Function that creates an object of input values and then
   // adds that data to page using addItem method
-  const onAddItem = (inputValues) => {
+  const onAddItem = (inputValues, resetForm) => {
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
-      weather: inputValues.weatherType,
+      weather: inputValues.weather,
     };
+
     // Need to use data below because the returned 'data' contains id
-    addItem(newCardData).then((data) => {
-      console.log("About to update state with:", data);
-      console.log("Current clothingItems:", clothingItems);
-      // console.log("addItem returns:", data);
-      // console.log("Is it an array?", Array.isArray(data));
-      setClothingItems([data, ...clothingItems]);
-      closeActiveModal();
-    });
+    addItem(newCardData)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        resetForm();
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Failed to add item:", error);
+      });
   };
 
+  // TODO
+  // 1- Add a delete button to the preview modal
+  // 2- Declare a handler in App.jsx (deleteItemHandler)
+  // 3- Pass handler to preview modal
+  // 4- Inside preview modal, pass the ID as an argument to the handler
+  // (use the handler pattern found in ItemCard)
+  // Inside the handler
+  // 5- Call removeItem function, pass it to the ID
+  // 6- in the .then() remove the item from the array using filter method
+  const handleDeleteItem = (itemToDelete) => {
+    console.log("Attempting to delete item:", itemToDelete); // Add this line
+
+    // console.log(card);
+    removeItem(itemToDelete._id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((i) => i._id !== itemToDelete._id)
+        );
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
   // useEffect hook for getting data with coordinates/apiKey and filtering it
   useEffect(() => {
     getWeather(coordinates, apiKey)
@@ -77,12 +107,10 @@ function App() {
         setWeatherData(filteredData);
       })
       .catch(console.error);
-
+    // Get items in the order they were sent to the server but in reverse
     getItems()
       .then((data) => {
-        setClothingItems(data);
-        // console.log("getItems returns:", data);
-        // console.log("Is it an array?", Array.isArray(data));
+        setClothingItems(data.reverse());
       })
       .catch(console.error);
   }, []);
@@ -158,6 +186,14 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           closeActiveModal={closeActiveModal}
+          onDelete={handleDeleteItem}
+          onConfirmation={handleDeleteClick}
+        />
+        <ConfirmationModal
+          activeModal={activeModal}
+          card={selectedCard}
+          closeActiveModal={closeActiveModal}
+          onDelete={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
