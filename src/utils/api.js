@@ -4,17 +4,17 @@ const headers = {
   "Content-type": "application/json",
 };
 
-// function to handle server response
+// Function to handle server response
 const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
-// api call to GET items
+// APOI call to GET item
 export const getItems = () => {
   return fetch(`${baseUrl}/items`).then(handleServerResponse);
 };
 
-// api call to POST items
+// API call to POST item
 export const addItem = ({ name, imageUrl, weather }) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -27,6 +27,7 @@ export const addItem = ({ name, imageUrl, weather }) => {
   }).then(handleServerResponse);
 };
 
+// API call to delete item
 export const removeItem = (itemID) => {
   return fetch(`${baseUrl}/items/${itemID}`, {
     method: "DELETE",

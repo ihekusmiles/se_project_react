@@ -1,4 +1,3 @@
-import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
 export default function ClothesSection({

@@ -65,7 +65,6 @@ function App() {
       weather: inputValues.weather,
     };
 
-    // Need to use data below because the returned 'data' contains id
     addItem(newCardData)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
@@ -77,19 +76,8 @@ function App() {
       });
   };
 
-  // TODO
-  // 1- Add a delete button to the preview modal
-  // 2- Declare a handler in App.jsx (deleteItemHandler)
-  // 3- Pass handler to preview modal
-  // 4- Inside preview modal, pass the ID as an argument to the handler
-  // (use the handler pattern found in ItemCard)
-  // Inside the handler
-  // 5- Call removeItem function, pass it to the ID
-  // 6- in the .then() remove the item from the array using filter method
+  // Handler to delete item using its id from array using filter method
   const handleDeleteItem = (itemToDelete) => {
-    console.log("Attempting to delete item:", itemToDelete); // Add this line
-
-    // console.log(card);
     removeItem(itemToDelete._id)
       .then(() => {
         setClothingItems((prevItems) =>
@@ -143,7 +131,6 @@ function App() {
     // Dependency array ensures this runs only when modal state changes
   }, [activeModal]);
 
-  // The HTML returned with COMPONENTS and PROPS
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider

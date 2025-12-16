@@ -3,8 +3,6 @@ import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
 
-// import profile from "../../assets/profile-btn.svg";
-
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -39,17 +37,6 @@ function Header({ handleAddClick, weatherData }) {
           </div>
         </NavLink>
       </header>
-      {/* Code below is for responsive design eg. adding the profile-btn.svg
-        <button
-          className="header__profile-btn"
-          type="button"
-          onClick={handleAddClick}
-        >
-          <img src={profile} alt="Profile button" className="header__profile" />
-        </button> */}
-      {/* <p className="header__date-and-location header__alternative">
-        {currentDate}, {weatherData.city}
-      </p> */}
     </>
   );
 }

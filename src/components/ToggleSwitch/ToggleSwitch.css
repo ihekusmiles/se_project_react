@@ -47,6 +47,3 @@
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
   left: 28px;
 }
-
-/* transform: translateX(...)
-mix-blend-mode: ... */
