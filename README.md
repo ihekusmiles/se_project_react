@@ -14,31 +14,33 @@
 
 **Intro**
 
-This project aims to provide an interactive web application that aims to inform users what to wear depending on the weather conditions for a specified city. Additionally, users will be able to add new garment depending on the weather using a form.
+This project delivers an interactive web application that helps users decide what to wear based on current weather conditions in a specified city. Users can manage a personal wardrobe of clothing items categorized by weather types (hot, warm, cold) and get recommendations for what to wear.
 
 ## Project links
 
 - [Github Page link to the project](https://ihekusmiles.github.io/se_project_react/)
 
+- [Project Video Pitch](https://videogoeshere.com)
+
 ## Project description
 
-In this project users are given suggestions on what to wear based on the weather conditions in a given city. This project serves as a transition from a static front-end to a dynamic, API-driven application. In terms of web development, some technologies used include HTML, CSS, JavaScript, React, NPM, and modules. This is a priliminary stage and further improvements will come.
+A weather-based clothing recommendation app that suggest appropriate garments based on current weather conditions. This project serves as a transition from a static front-end to a dynamic, API-driven application. A mock server (json-server) was used in order to fulfill API calls locally. Other web development technologies used include HTML, CSS, JavaScript, React, NPM, React Router, context API among others. Lastly, in addition to being able to add garments, users are also able to view a full collection of the garments submitted by visiting the profile page.
 
 ## Project features
 
-- Semantic HTML5
+- HTML5
 - CSS
-- Media Queries
-- Responsive Design
 - JavaScript
 - React
 - API integration
+- React Router
+- API Calls
 
 **Figma**
 
 In order to make the layout, Figma was used to extract all the necessary design details, eg. font sizes, styles, padding/margin distances etc. The link below:
 
-- [Link to the project on Figma](https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-Project--WTWR?node-id=311-433&p=f&t=gh7N0LHTLVLCkhW0-0)
+- [Link to the project on Figma](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&p=f&t=4VA4ucNNDJmrLTsF-0)
 
 **Images**
 
@@ -61,6 +63,3 @@ Users can click on each card and preview a bigger version of it by clicking on i
 ## Plan on improving project
 
 - I will be adding responsive design in order to show this app correctly on mobile apps or smaller screens.
-- Further improvements like liking, and adding card will be added.
-- Form validation will also be implemented using Javascript
-- Style it differently
