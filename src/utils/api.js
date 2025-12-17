@@ -5,7 +5,7 @@ const headers = {
 };
 
 // Function to handle server response
-const handleServerResponse = (res) => {
+export const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
