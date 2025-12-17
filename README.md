@@ -18,9 +18,9 @@ This project delivers an interactive web application that helps users decide wha
 
 ## Project links
 
-- [Github Page link to the project](https://ihekusmiles.github.io/se_project_react/)
+Check out [this video](https://www.loom.com/share/394c2f47126c46a9a8fe5bace967e1ac) where I describe and showcase the project and explain some technologies used.
 
-- [Project Video Pitch](https://videogoeshere.com)
+- [Github Page link to the project](https://ihekusmiles.github.io/se_project_react/)
 
 ## Project description
 
