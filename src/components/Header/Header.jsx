@@ -9,35 +9,28 @@ function Header({ handleAddClick, weatherData }) {
     day: "numeric",
   });
   return (
-    <>
-      {" "}
-      <header className="header">
-        <NavLink to="/">
-          <img src={logo} alt="App logo" className="header__logo" />
-        </NavLink>
-        <p className="header__date-and-location">
-          {currentDate}, {weatherData.city}
-        </p>
-        <ToggleSwitch />{" "}
-        <button
-          className="header__add-clothes-btn"
-          type="button"
-          onClick={handleAddClick}
-        >
-          + Add clothes
-        </button>
-        <NavLink className="header__nav-link" to="/profile">
-          <div className="header__user-container">
-            <p className="header__username">Terrence Tegegne</p>
-            <img
-              src={avatar}
-              alt="Terrence Tegegne"
-              className="header__avatar"
-            />
-          </div>
-        </NavLink>
-      </header>
-    </>
+    <header className="header">
+      <NavLink to="/">
+        <img src={logo} alt="App logo" className="header__logo" />
+      </NavLink>
+      <p className="header__date-and-location">
+        {currentDate}, {weatherData.city}
+      </p>
+      <ToggleSwitch />{" "}
+      <button
+        className="header__add-clothes-btn"
+        type="button"
+        onClick={handleAddClick}
+      >
+        + Add clothes
+      </button>
+      <NavLink className="header__nav-link" to="/profile">
+        <div className="header__user-container">
+          <p className="header__username">Terrence Tegegne</p>
+          <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
+        </div>
+      </NavLink>
+    </header>
   );
 }
 

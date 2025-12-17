@@ -7,10 +7,12 @@ export default function ToggleSwitch() {
   );
 
   return (
+    // Binding checkbox to context state on line 14:
     <label className="toggle-switch">
       <input
-        onChange={handleToggleSwitchChange}
         type="checkbox"
+        checked={currentTemperatureUnit === "C"}
+        onChange={handleToggleSwitchChange}
         className="toggle-switch__checkbox"
       />
       <span className="toggle-switch__circle"></span>

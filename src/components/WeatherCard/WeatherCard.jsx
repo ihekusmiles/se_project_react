@@ -17,19 +17,25 @@ function WeatherCard({ weatherData }) {
   } else {
     weatherOption = filteredOptions[0];
   }
-  // We can use brackets to call on the current temperature unit
+
+  // Separating concerns into consts and using weatherData
+  const imageSrc =
+    weatherOption?.url ||
+    `${
+      weatherData.isDay
+        ? defaultWeatherOptions.day.url
+        : defaultWeatherOptions.night.url
+    }`;
+  const altText = `${weatherData.isDay ? "daytime" : "nighttime"} ${
+    weatherData.condition
+  } weather`;
+
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
         {weatherData.temp[currentTemperatureUnit]}°{currentTemperatureUnit}
       </p>
-      <img
-        src={weatherOption?.url}
-        alt={`Card showing ${weatherOption?.day ? "day" : "night"}time ${
-          weatherOption?.condition
-        } weather`}
-        className="weather-card__image"
-      />
+      <img src={imageSrc} alt={altText} className="weather-card__image" />
     </section>
   );
 }
