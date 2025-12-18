@@ -7,7 +7,7 @@
 - Project description
 - Project features
 - Figma
-- Images
+- App Images
 - Javascript Integration
 - API integration
 - Plan on improving project
@@ -40,9 +40,9 @@ A weather-based clothing recommendation app that suggest appropriate garments ba
 
 In order to make the layout, Figma was used to extract all the necessary design details, eg. font sizes, styles, padding/margin distances etc. The link below:
 
-- [Link to the project on Figma](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&p=f&t=4VA4ucNNDJmrLTsF-0)
+- [Link to the project on Figma](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=605-313&t=5B8d5FGDcFqI9EAi-0)
 
-**Images**
+**App Images**
 
 The following screenshot shows what the page needs to look like at 1440px:
 
@@ -52,14 +52,27 @@ A users location is automatically detected and displayed here along with the cit
 
 ![Close up info](./src/assets/temp-location.JPG)
 
-Users will be able to add clothes depending on the weather using the +Add clothes. This button brings up a form:
+Users can toggle the temperature unit using the button:
+
+![Toggle button](./src/assets/toggleswitch.png)
+
+Users are able to add their own clothes using the +Add clothes button, which brings up the form:
 
 ![Add clothes form](./src/assets/form.JPG)
 
-Users can click on each card and preview a bigger version of it by clicking on it:
+Users can preview each card in their wardrobe where they have the option to delete the card.
 
-![Card preview](./src/assets/preview.JPG)
+![Card preview](./src/assets/preview.png)
+
+Additionally, a confirmation modal will open if the user decides to delete a card:
+
+![Confirmation modal](./src/assets/delete_confirmation_modal.png)
+
+Clicking on the users name (top right corner) directs users to the profile page where they can view the entire wardrobe:
+
+![Profile page](./src/assets/profile_view.png)
 
 ## Plan on improving project
 
-- I will be adding responsive design in order to show this app correctly on mobile apps or smaller screens.
+- The ability to change profile name and avatar will be implemented.
+- Responsive design will be added to enhance user experience.

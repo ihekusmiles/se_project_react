@@ -1,22 +1,23 @@
-// Importing components, constants and destructured items
+// Import React Router components and React Hooks
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { coordinates, apiKey } from "../../utils/constants";
-import Header from "../Header/Header";
+
+// Import components
 import Main from "../Main/Main";
+import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import Profile from "../Profile/Profile";
 
-import { getItems } from "../../utils/api";
-import { addItem } from "../../utils/api";
-import { removeItem } from "../../utils/api";
+// Import constants, API functions, and temperature context
+import { coordinates, apiKey } from "../../utils/constants";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { getItems, addItem, removeItem } from "../../utils/api";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-import Profile from "../../components/Profile/Profile";
-
+// App() is the 2nd highest parent in the hierarchy
 function App() {
   // UseState hooks for setting data
   const [weatherData, setWeatherData] = useState({
@@ -26,7 +27,6 @@ function App() {
     city: "",
     isDay: false,
   });
-
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
@@ -48,9 +48,11 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  // Function that opens up confirmation modal
   const handleDeleteClick = () => {
     setActiveModal("confirmation-modal");
   };
+
   // Function that closes any active modal
   const closeActiveModal = () => {
     setActiveModal("");
@@ -85,7 +87,9 @@ function App() {
         );
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Failed to delete item", error);
+      });
   };
   // useEffect hook for getting data with coordinates/apiKey and filtering it
   useEffect(() => {
@@ -94,15 +98,20 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Failed to get weather data:", error);
+      });
+
     // Get items in the order they were sent to the server but in reverse
     getItems()
       .then((data) => {
         setClothingItems(data.reverse());
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Failed to get items from server:", error);
+      });
   }, []);
-
+  ``;
   // useEffect hook for Escape key and overlay click modal-closing features
   useEffect(() => {
     // If no modal is active, don't attach listeners
