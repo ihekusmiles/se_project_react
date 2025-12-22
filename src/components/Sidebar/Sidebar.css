@@ -5,7 +5,8 @@
   font-weight: 700;
   font-size: 20px;
   align-items: center;
-  width: 229px;
+  min-width: 229px;
+  width: 100%;
 }
 
 .sidebar__avatar {
@@ -17,4 +18,13 @@
   font-size: 20px;
   line-height: 100%;
   margin: 0;
+}
+
+@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 750px) {
+}
+
+@media screen and (max-width: 550px) {
 }

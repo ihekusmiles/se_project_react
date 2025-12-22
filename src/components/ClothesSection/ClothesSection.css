@@ -28,6 +28,10 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
+.clothes-section__add-clothes-btn:hover {
+  cursor: pointer;
+}
+
 .clothes-section__cards__list {
   display: flex;
   flex-wrap: wrap;
@@ -35,4 +39,13 @@
   padding: 0;
   list-style-type: none;
   gap: 20px;
+}
+
+@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 750px) {
+}
+
+@media screen and (max-width: 550px) {
 }

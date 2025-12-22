@@ -29,3 +29,10 @@
 .card__image {
   width: 100%;
 }
+
+/* @media screen and (max-width: 550px) {
+  .card {
+  }
+  .card__image {
+    height: 100%;
+  } */

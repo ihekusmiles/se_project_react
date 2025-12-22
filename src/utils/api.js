@@ -8,7 +8,7 @@ export const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
-// APOI call to GET item
+// API call to GET item
 export const getItems = () => {
   return fetch(`${baseUrl}/items`).then(handleServerResponse);
 };

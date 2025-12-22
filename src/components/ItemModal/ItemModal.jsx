@@ -1,12 +1,6 @@
 import closeButton from "../../assets/close-btn.svg";
 
-function ItemModal({
-  activeModal,
-  closeActiveModal,
-  card,
-  onDelete,
-  onConfirmation,
-}) {
+function ItemModal({ activeModal, closeActiveModal, card, onConfirmation }) {
   return (
     <div className={`modal ${activeModal === "preview" && "modal__is-opened"}`}>
       <div className="modal__content_type_image">

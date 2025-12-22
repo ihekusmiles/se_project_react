@@ -22,3 +22,15 @@
   object-position: right top;
   width: 100%;
 }
+
+@media screen and (max-width: 749px) {
+  .weather-card {
+    min-width: 164px;
+  }
+}
+
+/* @media screen and (max-width: 375px) {
+  .weather-card__image {
+    max-width: 343px;
+  }
+} */

@@ -44,7 +44,7 @@
   background: transparent;
 }
 
-.modal__close {
+.modal__close:hover {
   cursor: pointer;
 }
 
