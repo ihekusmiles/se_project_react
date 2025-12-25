@@ -10,10 +10,15 @@
   right: 24px;
 }
 
+.modal__dark-menu-closeBtn {
+  visibility: hidden;
+  display: none;
+}
+
 .modal__image {
   display: block;
-  height: 498px;
-  width: 498px;
+  max-height: 498px;
+  max-width: 498px;
 }
 
 .modal__footer {
@@ -52,4 +57,36 @@
 
 .modal__delete-item-btn:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .modal__image {
+    max-width: 363px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .modal__close_type_preview {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+  .modal__closeBtn {
+    visibility: hidden;
+    display: none;
+  }
+  .modal__is-opened .modal__dark-menu-closeBtn {
+    visibility: visible;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .modal__content_type_image {
+    border-radius: 12px;
+  }
+
+  .modal__image {
+    max-width: 343px;
+  }
 }

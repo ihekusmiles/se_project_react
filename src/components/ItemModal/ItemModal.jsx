@@ -1,12 +1,7 @@
 import closeButton from "../../assets/close-btn.svg";
+import darkCloseButton from "../../assets/menu_close-btn.svg";
 
-function ItemModal({
-  activeModal,
-  closeActiveModal,
-  card,
-  onDelete,
-  onConfirmation,
-}) {
+function ItemModal({ activeModal, closeActiveModal, card, onConfirmation }) {
   return (
     <div className={`modal ${activeModal === "preview" && "modal__is-opened"}`}>
       <div className="modal__content_type_image">
@@ -19,6 +14,11 @@ function ItemModal({
             src={closeButton}
             alt="Close button"
             className="modal__closeBtn"
+          />
+          <img
+            src={darkCloseButton}
+            alt="Close button"
+            className="modal__dark-menu-closeBtn"
           />
         </button>
         <img src={card.imageUrl} alt={card.name} className="modal__image" />

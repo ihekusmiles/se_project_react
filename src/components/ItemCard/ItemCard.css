@@ -29,3 +29,9 @@
 .card__image {
   width: 100%;
 }
+
+@media screen and (max-width: 375px) {
+  .card__name {
+    top: 5px;
+  }
+}

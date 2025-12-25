@@ -1,4 +1,5 @@
 import closeButton from "../../assets/close-btn.svg";
+import darkCloseButton from "../../assets/menu_close-btn.svg";
 
 function ModalWithForm({
   children,
@@ -18,6 +19,11 @@ function ModalWithForm({
             src={closeButton}
             alt="Close button"
             className="modal__closeBtn"
+          />
+          <img
+            src={darkCloseButton}
+            alt="Close button"
+            className="modal__dark-menu-closeBtn"
           />
         </button>
         <form onSubmit={onSubmit} className={name}>

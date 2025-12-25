@@ -1,3 +1,4 @@
+// const baseUrl = "http://192.168.1.164:3001"; baseUrl to test responsive design on phone
 const baseUrl = "http://localhost:3001";
 const headers = {
   "Content-type": "application/json",
@@ -8,7 +9,7 @@ export const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
-// APOI call to GET item
+// API call to GET item
 export const getItems = () => {
   return fetch(`${baseUrl}/items`).then(handleServerResponse);
 };

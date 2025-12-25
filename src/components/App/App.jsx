@@ -111,7 +111,7 @@ function App() {
         console.error("Failed to get items from server:", error);
       });
   }, []);
-  ``;
+
   // useEffect hook for Escape key and overlay click modal-closing features
   useEffect(() => {
     // If no modal is active, don't attach listeners
