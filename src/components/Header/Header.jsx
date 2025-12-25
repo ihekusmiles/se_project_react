@@ -1,13 +1,13 @@
 import logo from "../../assets/wtwr.svg";
 import avatar from "../../assets/avatar.svg";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import hamburger from "../../assets/profile-btn.svg";
+import menuCloseButton from "../../assets/menu_close-btn.svg";
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import hamburger from "../../assets/profile-btn.svg";
-import menuCloseButton from "../../assets/menu_close-btn.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
