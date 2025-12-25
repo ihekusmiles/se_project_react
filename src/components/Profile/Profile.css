@@ -4,3 +4,19 @@
   gap: 116px;
   margin: 19px 0 0 0;
 }
+
+@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 750px) {
+  .profile {
+    gap: 60px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .profile {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

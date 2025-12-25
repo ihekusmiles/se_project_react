@@ -1,4 +1,5 @@
 import closeButton from "../../assets/close-btn.svg";
+import darkCloseButton from "../../assets/menu_close-btn.svg";
 
 function ConfirmationModal({ activeModal, closeActiveModal, card, onDelete }) {
   return (
@@ -24,6 +25,11 @@ function ConfirmationModal({ activeModal, closeActiveModal, card, onDelete }) {
             src={closeButton}
             alt="Close button"
             className="modal__closeBtn"
+          />
+          <img
+            src={darkCloseButton}
+            alt="Close button"
+            className="modal__dark-menu-closeBtn"
           />
         </button>
 

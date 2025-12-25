@@ -1,10 +1,13 @@
 import logo from "../../assets/wtwr.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import hamburger from "../../assets/profile-btn.svg";
-import closeMenu from "../../assets/menu_close-btn.svg";
+import menuCloseButton from "../../assets/menu_close-btn.svg";
 
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -19,8 +22,21 @@ function Header({ handleAddClick, weatherData }) {
     console.log("The toggleswitch is now set to:", { isMobileMenuOpened });
   };
 
+  // Get page location to determine header CSS style
+  const headerClass = () => {
+    const location = useLocation();
+    return location.pathname === "/profile"
+      ? "header header__profile-view"
+      : "header";
+  };
+
+  const changeData = () => {
+    const location = useLocation();
+    if (location.pathname === "/profile") return "header__change-data";
+  };
+
   return (
-    <header className="header">
+    <header className={headerClass()}>
       <div className="header__date-location">
         <NavLink to="/">
           <img src={logo} alt="App logo" className="header__logo" />
@@ -41,9 +57,9 @@ function Header({ handleAddClick, weatherData }) {
           onClick={toggleMobileMenu}
         >
           <img
-            src={closeMenu}
+            src={menuCloseButton}
             alt="Menu close button"
-            className="modal__closeBtn"
+            className="modal__menu-closeBtnn"
           />
         </button>
         <ToggleSwitch />{" "}
@@ -57,7 +73,11 @@ function Header({ handleAddClick, weatherData }) {
         >
           + Add clothes
         </button>
-        <NavLink className="header__nav-link" to="/profile">
+        <NavLink
+          className="header__nav-link"
+          to="/profile"
+          onClick={toggleMobileMenu}
+        >
           <div className="header__user-container">
             <p className="header__username">Terrence Tegegne</p>
             <img

@@ -30,9 +30,8 @@
   width: 100%;
 }
 
-/* @media screen and (max-width: 550px) {
-  .card {
+@media screen and (max-width: 375px) {
+  .card__name {
+    top: 5px;
   }
-  .card__image {
-    height: 100%;
-  } */
+}

@@ -113,3 +113,19 @@
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.6);
 }
+
+@media screen and (max-width: 550px) {
+  .modal__content {
+    max-width: 375px;
+  }
+
+  .modal__input {
+    width: 319px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .modal__content {
+    max-width: 375px;
+  }
+}
