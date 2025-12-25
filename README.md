@@ -8,8 +8,7 @@
 - Project features
 - Figma
 - App Images
-- Javascript Integration
-- API integration
+- Responsive design
 - Plan on improving project
 
 **Intro**
@@ -44,7 +43,7 @@ In order to make the layout, Figma was used to extract all the necessary design 
 
 **App Images**
 
-The following screenshot shows what the page needs to look like at 1440px:
+The main app at 1440px screen resolution:
 
 ![Page at 1440px](./src/assets/1440px.png)
 
@@ -72,7 +71,29 @@ Clicking on the users name (top right corner) directs users to the profile page 
 
 ![Profile page](./src/assets/profile_view.png)
 
+**Responsive Design**
+
+Responsive design was implemented for various screen sizes. Elements were also placed differently depending on the screen size. The page at 840px:
+
+![Page at 840px](./src/assets/840px.png)
+
+The page at 621px:
+
+![Page at 621px](./src/assets/621px.png)
+
+Main page at mobile view (375px):
+
+![Page at 375px](./src/assets/375px.png)
+
+The main menu for mobile view:
+
+![Menu in mobile view](./src/assets/375px_menu.png)
+
+Mobile view interface for profile page:
+
+![Profile in mobile view](./src/assets/375px_profile.png)
+
 ## Plan on improving project
 
-- The ability to change profile name and avatar will be implemented.
-- Responsive design will be added to enhance user experience.
+- The ability to change profile's username.
+- Log in and log out implementation.

@@ -134,9 +134,6 @@
     background: transparent;
   }
 
-  /* .mobile-menu_opened .header__menu-close {
-    visibility: visible;
-  } */
   .mobile-menu_opened .modal__menu-closeBtnn {
     visibility: visible;
   }

@@ -10,10 +10,6 @@
   right: 24px;
 }
 
-/* .modal__closeBtn {
-  min-width: 20px;
-} */
-
 .modal__dark-menu-closeBtn {
   visibility: hidden;
   display: none;

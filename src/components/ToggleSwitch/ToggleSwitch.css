@@ -58,6 +58,6 @@
     margin: 0 auto 40px;
   }
   .toggle-switch__circle {
-    transition: 0.5ms;
+    transition: 0.2ms;
   }
 }
