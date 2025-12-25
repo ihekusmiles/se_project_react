@@ -1,12 +1,15 @@
+// Import images for header
 import logo from "../../assets/wtwr.svg";
 import avatar from "../../assets/avatar.svg";
 import hamburger from "../../assets/profile-btn.svg";
 import menuCloseButton from "../../assets/menu_close-btn.svg";
 
+// Import React Router components and React Hooks
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
+// Import ToggleSwitch component
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {
