@@ -12,7 +12,7 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import Profile from "../Profile/Profile";
 
 // Import constants, API functions, and temperature context
-import { coordinates, apiKey } from "../../utils/constants";
+import { apiKey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, removeItem } from "../../utils/api";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
@@ -31,6 +31,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [coordinates, setCoordinates] = useState(null);
 
   // Function that handles toggle switch change using a ternary operator
   const handleToggleSwitchChange = () => {
@@ -91,18 +92,39 @@ function App() {
         console.error("Failed to delete item", error);
       });
   };
-  // useEffect hook for getting data with coordinates/apiKey and filtering it
+  // useEffect hook for getting user location
   useEffect(() => {
-    getWeather(coordinates, apiKey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        setWeatherData(filteredData);
-      })
-      .catch((error) => {
-        console.error("Failed to get weather data:", error);
-      });
+    if (!coordinates) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setCoordinates({ latitude, longitude });
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          // Fallback to default coordinates
+          setCoordinates({ latitude: 40.670448, longitude: -73.393837 });
+        }
+      );
+    }
+  }, [coordinates]);
 
-    // Get items in the order they were sent to the server but in reverse
+  // useEffect hook for getting weather data with coordinates
+  useEffect(() => {
+    if (coordinates) {
+      getWeather(coordinates, apiKey)
+        .then((data) => {
+          const filteredData = filterWeatherData(data);
+          setWeatherData(filteredData);
+        })
+        .catch((error) => {
+          console.error("Failed to get weather data:", error);
+        });
+    }
+  }, [coordinates]);
+
+  // useEffect hook for getting clothing items
+  useEffect(() => {
     getItems()
       .then((data) => {
         setClothingItems(data.reverse());

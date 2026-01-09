@@ -13,7 +13,7 @@
 
 **Intro**
 
-This project delivers an interactive web application that helps users decide what to wear based on current weather conditions in a specified city. Users can manage a personal wardrobe of clothing items categorized by weather types (hot, warm, cold) and get recommendations for what to wear.
+This project delivers an interactive web application that helps users decide what to wear based on current weather conditions in their location. Users can manage a personal wardrobe of clothing items categorized by weather types (hot, warm, cold) and get recommendations for what to wear.
 
 ## Project links
 

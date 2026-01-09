@@ -109,9 +109,20 @@
   border-radius: 4px;
 }
 
-.modal__submit:hover {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.6);
+.modal__error {
+  display: none;
+  color: red;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.modal__error_visible {
+  display: block;
+}
+
+.modal__input_error {
+  border-color: red;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 550px) {

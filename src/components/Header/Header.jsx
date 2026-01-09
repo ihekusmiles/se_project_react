@@ -22,7 +22,6 @@ function Header({ handleAddClick, weatherData }) {
   // Boolean function that toggles menu (opened/closed)
   const toggleMobileMenu = () => {
     setMobileMenuOpened(!isMobileMenuOpened);
-    console.log("The toggleswitch is now set to:", { isMobileMenuOpened });
   };
 
   // Get page location to determine header CSS style
