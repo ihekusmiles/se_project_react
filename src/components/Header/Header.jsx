@@ -12,7 +12,13 @@ import { useLocation } from "react-router-dom";
 // Import ToggleSwitch component
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
+// Import useContext and CurrentUserContext
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 function Header({ handleAddClick, weatherData }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -81,7 +87,7 @@ function Header({ handleAddClick, weatherData }) {
           onClick={toggleMobileMenu}
         >
           <div className="header__user-container">
-            <p className="header__username">Terrence Tegegne</p>
+            <p className="header__username">Hector Robles</p>
             <img
               src={avatar}
               alt="Terrence Tegegne"
