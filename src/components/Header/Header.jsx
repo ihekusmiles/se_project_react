@@ -1,6 +1,5 @@
 // Import images for header
 import logo from "../../assets/wtwr.svg";
-import avatar from "../../assets/avatar.svg";
 import hamburger from "../../assets/profile-btn.svg";
 import menuCloseButton from "../../assets/menu_close-btn.svg";
 
@@ -44,10 +43,22 @@ function Header({
       : "header";
   };
 
-  // const changeData = () => {
-  //   const location = useLocation();
-  //   if (location.pathname === "/profile") return "header__change-data";
-  // };
+  // Three safety layers to get currentUser properties:
+
+  // Safety function to extract first letter of current user's name
+  const getFirstLetter = () => {
+    return currentUser && currentUser.name ? currentUser.name[0] : "";
+  };
+
+  // Safety function to get name from current user:
+  const getCurrentUserName = () => {
+    return currentUser && currentUser.name ? currentUser.name : "";
+  };
+
+  // Safety function to get avatar from current user:
+  const getCurrentUserAvatar = () => {
+    return currentUser && currentUser.avatar ? currentUser.avatar : "";
+  };
 
   return (
     <header className={headerClass()}>
@@ -78,7 +89,7 @@ function Header({
         </button>
         <ToggleSwitch />{" "}
         {/* Using conditional rendering to show completely different elements */}
-        {currentUser._id ? (
+        {isLoggedIn ? (
           <button
             className="header__add-clothes-btn"
             type="button"
@@ -106,14 +117,18 @@ function Header({
           onClick={toggleMobileMenu}
         >
           {/* Using conditional rendering to show completely different elements */}
-          {currentUser._id ? (
+          {isLoggedIn ? (
             <div className="header__user-container">
-              <p className="header__username">Hector Robles</p>
-              <img
-                src={avatar}
-                alt="Terrence Tegegne"
-                className="header__avatar"
-              />
+              <p className="header__username">{getCurrentUserName()}</p>
+              {getCurrentUserAvatar() ? (
+                <img
+                  src={getCurrentUserAvatar()}
+                  alt="Terrence Tegegne"
+                  className="header__avatar"
+                />
+              ) : (
+                <div className="header__avatar-letter">{getFirstLetter()}</div>
+              )}
             </div>
           ) : (
             <button

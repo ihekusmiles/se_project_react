@@ -2,8 +2,8 @@ import avatar from "../../assets/avatar.svg";
 import { useLocation } from "react-router-dom";
 
 export default function Sidebar() {
+  const location = useLocation();
   const changeData = () => {
-    const location = useLocation();
     if (location.pathname === "/profile") return "header__profile-change-data";
   };
 
