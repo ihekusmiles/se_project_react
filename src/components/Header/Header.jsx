@@ -13,11 +13,17 @@ import { useLocation } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 // Import useContext and CurrentUserContext
-import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+// import { useContext } from "react";
+// import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData }) {
-  const currentUser = useContext(CurrentUserContext);
+function Header({
+  handleAddClick,
+  weatherData,
+  handleRegisterClick,
+  handleLoginClick,
+  isLoggedIn,
+}) {
+  // const currentUser = useContext(CurrentUserContext);
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -31,17 +37,17 @@ function Header({ handleAddClick, weatherData }) {
   };
 
   // Get page location to determine header CSS style
+  const location = useLocation(); // Hook is called at the top level
   const headerClass = () => {
-    const location = useLocation();
     return location.pathname === "/profile"
       ? "header header__profile-view"
       : "header";
   };
 
-  const changeData = () => {
-    const location = useLocation();
-    if (location.pathname === "/profile") return "header__change-data";
-  };
+  // const changeData = () => {
+  //   const location = useLocation();
+  //   if (location.pathname === "/profile") return "header__change-data";
+  // };
 
   return (
     <header className={headerClass()}>
@@ -71,29 +77,55 @@ function Header({ handleAddClick, weatherData }) {
           />
         </button>
         <ToggleSwitch />{" "}
-        <button
-          className="header__add-clothes-btn"
-          type="button"
-          onClick={() => {
-            handleAddClick();
-            toggleMobileMenu();
-          }}
-        >
-          + Add clothes
-        </button>
+        {/* Using conditional rendering to show completely different elements */}
+        {isLoggedIn ? (
+          <button
+            className="header__add-clothes-btn"
+            type="button"
+            onClick={() => {
+              handleAddClick();
+              toggleMobileMenu();
+            }}
+          >
+            + Add clothes
+          </button>
+        ) : (
+          <button
+            className="header__register-btn"
+            type="button"
+            onClick={() => {
+              handleRegisterClick();
+            }}
+          >
+            Sign Up
+          </button>
+        )}
         <NavLink
           className="header__nav-link"
           to="/profile"
           onClick={toggleMobileMenu}
         >
-          <div className="header__user-container">
-            <p className="header__username">Hector Robles</p>
-            <img
-              src={avatar}
-              alt="Terrence Tegegne"
-              className="header__avatar"
-            />
-          </div>
+          {/* Using conditional rendering to show completely different elements */}
+          {isLoggedIn ? (
+            <div className="header__user-container">
+              <p className="header__username">Hector Robles</p>
+              <img
+                src={avatar}
+                alt="Terrence Tegegne"
+                className="header__avatar"
+              />
+            </div>
+          ) : (
+            <button
+              className="header__login-btn"
+              type="button"
+              onClick={() => {
+                handleLoginClick();
+              }}
+            >
+              Log In
+            </button> // Change className and CSS
+          )}
         </NavLink>
       </div>
 

@@ -64,13 +64,11 @@ function App() {
     auth
       .register({ email, password, name, avatar })
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt); // Save the token to local storage
-          setCurrentUser(data.user); // Set user data; changed from setUserData
-          closeActiveModal();
-          setIsLoggedIn(true);
-          navigate("/profile"); // Redirect to profile page
-        }
+        console.log(data); // For debugging
+        setCurrentUser(data); // data is the entire user object
+        closeActiveModal();
+        setIsLoggedIn(true); // Log the user in
+        navigate("/profile");
       })
       .catch(console.error);
   };
@@ -83,7 +81,6 @@ function App() {
     auth
       .authorize({ email, password })
       .then((data) => {
-        // Verify that a jwt is included before logging the user in
         if (data.jwt) {
           setToken(data.jwt); // Save the token to local storage
           setCurrentUser(data.user);
@@ -114,6 +111,14 @@ function App() {
   // Function that opens up confirmation modal
   const handleDeleteClick = () => {
     setActiveModal("confirmation-modal");
+  };
+  // Function that opens registration modal
+  const handleRegisterClick = () => {
+    setActiveModal("register");
+  };
+  // Function that opens log in modal
+  const handleLoginClick = () => {
+    setActiveModal("login");
   };
 
   // Function that closes any active modal
@@ -246,13 +251,19 @@ function App() {
   }, [activeModal]);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              handleRegisterClick={handleRegisterClick}
+              handleLoginClick={handleLoginClick}
+              isLoggedIn={isLoggedIn}
+            />
             <Routes>
               <Route
                 path="/"
@@ -267,7 +278,7 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
