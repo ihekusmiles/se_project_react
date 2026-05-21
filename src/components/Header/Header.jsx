@@ -13,17 +13,17 @@ import { useLocation } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 // Import useContext and CurrentUserContext
-// import { useContext } from "react";
-// import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
   weatherData,
   handleRegisterClick,
   handleLoginClick,
-  isLoggedIn,
 }) {
   // const currentUser = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -78,7 +78,7 @@ function Header({
         </button>
         <ToggleSwitch />{" "}
         {/* Using conditional rendering to show completely different elements */}
-        {isLoggedIn ? (
+        {currentUser._id ? (
           <button
             className="header__add-clothes-btn"
             type="button"
@@ -106,7 +106,7 @@ function Header({
           onClick={toggleMobileMenu}
         >
           {/* Using conditional rendering to show completely different elements */}
-          {isLoggedIn ? (
+          {currentUser._id ? (
             <div className="header__user-container">
               <p className="header__username">Hector Robles</p>
               <img

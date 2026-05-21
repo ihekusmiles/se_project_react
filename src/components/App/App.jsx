@@ -81,8 +81,9 @@ function App() {
     auth
       .authorize({ email, password })
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt); // Save the token to local storage
+        console.log(data);
+        if (data.token) {
+          setToken(data.token); // Save the token to local storage
           setCurrentUser(data.user);
           closeActiveModal();
           setIsLoggedIn(true); // Log the user in
@@ -169,7 +170,8 @@ function App() {
     }
     auth
       .getUserInfo(jwt)
-      .then(({ _id, email, name, avatar }) => {
+      .then(({ user: { _id, email, name, avatar } }) => {
+        console.log({ user: { _id, email, name, avatar } }); // For debugging
         // If response is successful, log the user in and save their data to state
         setIsLoggedIn(true);
         setCurrentUser({ _id, email, name, avatar });
@@ -278,7 +280,10 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <ProtectedRoute
+                    currentUser={currentUser}
+                    isLoggedIn={isLoggedIn}
+                  >
                     <Profile
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
