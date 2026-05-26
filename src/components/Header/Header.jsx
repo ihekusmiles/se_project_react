@@ -60,6 +60,8 @@ function Header({
     return currentUser && currentUser.avatar ? currentUser.avatar : "";
   };
 
+  const getCurrentUserId = () => {};
+
   return (
     <header className={headerClass()}>
       <div className="header__date-location">
@@ -123,7 +125,7 @@ function Header({
               {getCurrentUserAvatar() ? (
                 <img
                   src={getCurrentUserAvatar()}
-                  alt="Terrence Tegegne"
+                  alt={getCurrentUserName()}
                   className="header__avatar"
                 />
               ) : (

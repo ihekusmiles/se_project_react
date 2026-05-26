@@ -1,7 +1,17 @@
 import closeButton from "../../assets/close-btn.svg";
 import darkCloseButton from "../../assets/menu_close-btn.svg";
 
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 function ItemModal({ activeModal, closeActiveModal, card, onConfirmation }) {
+  // Subscribe ItemModal to the context and extra currentUser
+  const { currentUser } = useContext(CurrentUserContext);
+  // Checking if the current user is the owner of the current clothing
+  const isOwn = card.owner === currentUser._id;
+  // Creating a variable for the delete button's classname
+  const itemDeleteButton = `modal__delete-item-btn ${isOwn ? "" : "modal__delete-button_hidden"}`;
+
   return (
     <div className={`modal ${activeModal === "preview" && "modal__is-opened"}`}>
       <div className="modal__content_type_image">
@@ -27,7 +37,7 @@ function ItemModal({ activeModal, closeActiveModal, card, onConfirmation }) {
           <p className="modal__weather">Weather: {card.weather}</p>
           <button
             onClick={() => onConfirmation(card)}
-            className="modal__delete-item-btn"
+            className={itemDeleteButton}
           >
             Delete item
           </button>

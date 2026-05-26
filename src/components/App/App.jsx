@@ -63,14 +63,30 @@ function App() {
   const handleRegistration = ({ email, password, name, avatar }) => {
     auth
       .register({ email, password, name, avatar })
+      .then(() => {
+        // 1. After successful registration, log them in
+        return auth.authorize({ email, password });
+      })
       .then((data) => {
-        console.log(data); // For debugging
-        setCurrentUser(data); // data is the entire user object
+        // 2. Obtained token from log in attempt so:
+        if (data.token) {
+          setToken(data.token); // Save token to browser
+          // 3. Fetch their newly created user profile info
+          return auth.getUserInfo(data.token);
+        }
+      })
+      .then((userData) => {
+        // 4. Safely extract the user data
+        const user = userData.user ? userData.user : userData;
+        // 5. Finally update state and UI
+        setCurrentUser(user);
+        setIsLoggedIn(true);
         closeActiveModal();
-        setIsLoggedIn(true); // Log the user in
         navigate("/profile");
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Registration failed", error);
+      });
   };
 
   // Login handler
@@ -84,11 +100,17 @@ function App() {
         console.log(data);
         if (data.token) {
           setToken(data.token); // Save the token to local storage
-          setCurrentUser(data.user);
-          closeActiveModal();
-          setIsLoggedIn(true); // Log the user in
-          navigate("/profile");
+          return auth.getUserInfo(data.token); // Immediately fetch users info using the new token
         }
+      })
+      .then((userData) => {
+        // Safely extract the user data
+        const user = userData.user ? userData.user : userData;
+        // Then set the state with the actual user profile data
+        setCurrentUser(user);
+        setIsLoggedIn(true); // Log the user in
+        closeActiveModal();
+        navigate("/profile");
       })
       .catch(console.error);
   };
@@ -130,15 +152,17 @@ function App() {
   // Function that creates an object of input values and then
   // adds that data to page using addItem method
   const onAddItem = (inputValues, resetForm) => {
+    // Get token and pass it inside addItem
+    const token = getToken();
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
       weather: inputValues.weather,
     };
-
-    addItem(newCardData)
+    // using (...) spread operator to unpack and add token to it
+    addItem({ ...newCardData, token })
       .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+        setClothingItems([data, ...clothingItems]); // Add new item to front of list
         resetForm();
         closeActiveModal();
       })
@@ -149,7 +173,8 @@ function App() {
 
   // Handler to delete item using its id from array using filter method
   const handleDeleteItem = (itemToDelete) => {
-    removeItem(itemToDelete._id)
+    const token = getToken();
+    removeItem(itemToDelete._id, token)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((i) => i._id !== itemToDelete._id),
@@ -161,23 +186,27 @@ function App() {
       });
   };
 
-  // UseEffect hook to check if there is a token in localStorage
+  // ON PAGE REFRESH: UseEffect hook to check if there is a token in localStorage
   useEffect(() => {
     const jwt = getToken();
 
     if (!jwt) {
       return;
     }
+
     auth
       .getUserInfo(jwt)
-      .then(({ user: { _id, email, name, avatar } }) => {
-        console.log({ user: { _id, email, name, avatar } }); // For debugging
+      .then((data) => {
+        console.log("Token check response:", data); // Look at this in your console!
+
+        // Safely check if the backend wraps the data in a 'user' property, or sends it directly
+        const userData = data.user ? data.user : data;
         // If response is successful, log the user in and save their data to state
         setIsLoggedIn(true);
-        setCurrentUser({ _id, email, name, avatar });
+        setCurrentUser(userData);
       })
       .catch((error) => {
-        console.error("Failed to log in", error);
+        console.error("Token check failed:", error);
         removeToken();
       });
   }, []);
