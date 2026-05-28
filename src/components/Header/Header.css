@@ -41,7 +41,19 @@
   cursor: pointer;
 }
 
+.header__register-btn {
+  font-weight: 700;
+  line-height: 24px;
+  background-color: transparent;
+  border: 0;
+  margin: 0 20px 0 20px;
+  padding: 0;
+  cursor: pointer;
+}
+
 .header__nav-link {
+  display: flex;
+  justify-content: end;
   color: black;
   text-decoration: none;
 }
@@ -50,11 +62,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.header__profile-btn {
-  visibility: hidden;
-  display: none;
 }
 
 .header__username {
@@ -82,8 +89,18 @@
 }
 
 .header__login-btn {
-  margin: 0 0 0 20px;
+  font-weight: 700;
+  font-size: 20px;
   line-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.header__profile-btn {
+  visibility: hidden;
+  display: none;
 }
 
 @media screen and (max-width: 900px) {
@@ -111,6 +128,12 @@
   }
   .header__add-clothes-btn {
     text-align: right;
+  }
+
+  .header__register-btn {
+    margin: 25px 0 0 20px;
+    padding: 0;
+    cursor: pointer;
   }
 }
 

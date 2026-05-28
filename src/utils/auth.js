@@ -1,4 +1,3 @@
-import { BASE_URL } from "../../../frontend-authorization-demo/src/utils/api";
 import { handleServerResponse } from "./api";
 
 const baseUrl = "http://localhost:3001";

@@ -49,8 +49,6 @@ function App() {
   const [coordinates, setCoordinates] = useState(null);
 
   // UseState hooks for user authorization
-  // userData is for form inputs (login/signup forms); holds temporary data that user types in
-  const [userData, setUserData] = useState({ email: "", password: "" });
   // currentUser stores actual user profile info that comes back from server after succesful login
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -122,7 +120,6 @@ function App() {
     auth
       .authorize({ email, password })
       .then((data) => {
-        // console.log(data); DELETE LINE
         if (data.token) {
           setToken(data.token); // Save the token to local storage
           return auth.getUserInfo(data.token); // Immediately fetch users info using the new token
@@ -227,12 +224,10 @@ function App() {
   // Handler to like/dislike card
   const handleCardLike = ({ _id, isLiked }) => {
     const token = getToken();
-    // console.log(token); DELETE LINE
     // Check if card is not currently liked
     !isLiked
       ? addCardLike({ itemID: _id, token: token })
           .then((updatedCard) => {
-            // console.log(updatedCard); DELETE LINE
             setClothingItems((cards) =>
               cards.map((item) => (item._id === _id ? updatedCard.like : item)),
             );
@@ -240,7 +235,6 @@ function App() {
           .catch((err) => console.log(err))
       : removeCardLike({ itemID: _id, token: token })
           .then((updatedCard) => {
-            // console.log(updatedCard); DELETE LINE
             setClothingItems((cards) =>
               cards.map((item) =>
                 item._id === _id ? updatedCard.dislike : item,
@@ -261,8 +255,6 @@ function App() {
     auth
       .getUserInfo(jwt)
       .then((data) => {
-        // console.log("Token check response:", data); // DELETE LINE  Look at this in your console!
-
         // Safely check if the backend wraps the data in a 'user' property, or sends it directly
         const userData = data.user ? data.user : data;
         // If response is successful, log the user in and save their data to state

@@ -14,7 +14,7 @@ function ItemCard({ item, onCardClick, handleLike }) {
   // Toggle between both images based on boolean value
   const likeImage = isLiked ? likedBtn : defaultLikeBtn;
 
-  console.log(item.likes); // Checks 'likes' array on console DELETE LATER
+  // console.log(item.likes); // Checks 'likes' array on console DELETE LATER
 
   const handleCardClick = () => {
     onCardClick(item);
