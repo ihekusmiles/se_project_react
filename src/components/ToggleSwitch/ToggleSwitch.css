@@ -9,6 +9,7 @@
   cursor: pointer;
   overflow: hidden;
   color: white;
+  align-self: center;
 }
 
 .toggle-switch__checkbox {

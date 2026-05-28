@@ -1,10 +1,15 @@
 import ClothesSection from "../ClothesSection/ClothesSection";
 import Sidebar from "../Sidebar/Sidebar";
 
-function Profile({ handleCardClick, clothingItems, handleAddClick }) {
+function Profile({
+  handleCardClick,
+  clothingItems,
+  handleAddClick,
+  handleChangeDataClick,
+}) {
   return (
     <section className="profile">
-      <Sidebar />
+      <Sidebar handleChangeDataClick={handleChangeDataClick} />
       <ClothesSection
         clothingItems={clothingItems}
         handleCardClick={handleCardClick}

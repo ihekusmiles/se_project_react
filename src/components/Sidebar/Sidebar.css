@@ -1,11 +1,6 @@
-.header__profile-change-data {
-  visibility: hidden;
-  display: none;
-}
-
 .sidebar__user-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   font-weight: 700;
   font-size: 20px;
@@ -17,12 +12,32 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
-
 .sidebar__username {
   font-size: 20px;
   line-height: 100%;
   margin: 0;
+}
+.sidebar__profile-change-data {
+  line-height: 100%;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 24px 0 8px;
+  padding: 0;
+  cursor: pointer;
+  border: 0;
+}
+
+.sidebar__profile-logout {
+  line-height: 100%;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: 0;
 }
 
 @media screen and (max-width: 550px) {

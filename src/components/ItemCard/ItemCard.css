@@ -3,7 +3,7 @@
   justify-content: center;
   position: relative;
   max-width: 323px;
-  max-height: 326px;
+  height: 326px;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -13,8 +13,32 @@
   cursor: pointer;
 }
 
-.card__name {
+.card__parent {
+  position: relative;
+  display: flex;
+  width: 323px;
+  /* justify-content: center; */
+  gap: 10px;
+}
+.card__image {
+  min-width: 323px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__name-like-container {
+  display: flex;
+  align-items: center;
   position: absolute;
+  left: 0px;
+  right: 0px;
+  justify-content: center;
+  top: 15px;
+  gap: 10px;
+}
+
+.card__name {
   top: 17px;
   font-size: 16px;
   font-weight: 700;
@@ -26,8 +50,9 @@
   padding: 2px 12px;
 }
 
-.card__image {
-  width: 100%;
+.card__like-btn {
+  width: 18px;
+  height: 15px;
 }
 
 @media screen and (max-width: 375px) {

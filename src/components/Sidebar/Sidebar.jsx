@@ -1,10 +1,14 @@
-import avatar from "../../assets/avatar.svg";
 import { useLocation } from "react-router-dom";
 
-export default function Sidebar() {
+// Import useContext and CurrentUserContext
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+export default function Sidebar({ handleChangeDataClick }) {
+  const { currentUser } = useContext(CurrentUserContext);
   const location = useLocation();
   const changeData = () => {
-    if (location.pathname === "/profile") return "header__profile-change-data";
+    if (location.pathname === "/profile") return "sidebar__profile-change-data";
   };
 
   return (
@@ -13,15 +17,23 @@ export default function Sidebar() {
       <div className="sidebar__profile">
         <div className="sidebar__user-container">
           <img
-            src={avatar}
-            alt="Terrence Tegegne"
+            src={currentUser.avatar}
+            alt={currentUser.name}
             className="sidebar__avatar"
           />
-          <div>
-            <p className="sidebar__username">Terrence Tegegne</p>
-            <p className={changeData()}>Change profile data</p>
-            <p className={changeData()}>Log out</p>
-          </div>
+          <p className="sidebar__username">{currentUser.name}</p>
+        </div>
+        <div>
+          <button
+            className={changeData()}
+            type="button"
+            onClick={() => {
+              handleChangeDataClick();
+            }}
+          >
+            Change profile data
+          </button>
+          <p className="sidebar__profile-logout">Log out</p>
         </div>
       </div>
     </aside>

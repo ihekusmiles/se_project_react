@@ -42,7 +42,7 @@ export const removeItem = (itemID, token) => {
 };
 
 // API call to update user profile with token authorization
-export const updateUserProfile = ({ name, imageUrl, token }) => {
+export const updateUserProfile = ({ name, avatar, token }) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH", // to meet project requirements
     headers: {
@@ -51,7 +51,11 @@ export const updateUserProfile = ({ name, imageUrl, token }) => {
     },
     body: JSON.stringify({
       name,
-      imageUrl,
+      avatar,
     }),
   }).then(handleServerResponse);
 };
+
+// API call to like an item (adding a like)
+
+// export const addCardLike = ()

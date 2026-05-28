@@ -11,7 +11,6 @@ const RegisterModal = ({ isOpen, onClose, buttonText, onRegister }) => {
     errors,
     setErrors,
     setIsValid,
-    resetForm,
     showErrors,
     setShowErrors,
   } = useFormWithValidation(defaultValues);

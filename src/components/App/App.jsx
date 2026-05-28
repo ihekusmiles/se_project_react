@@ -13,11 +13,17 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import Profile from "../Profile/Profile";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 // Import constants, API functions, and temperature context
 import { apiKey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { getItems, addItem, removeItem } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  removeItem,
+  updateUserProfile,
+} from "../../utils/api";
 import * as auth from "../../utils/auth";
 
 // Import context consts
@@ -57,6 +63,23 @@ function App() {
   };
   const removeToken = () => {
     localStorage.removeItem(TOKEN_KEY);
+  };
+
+  // Change profile data handler
+  const handleProfileDataChange = ({ name, avatar }) => {
+    const token = getToken();
+    const newData = {
+      name: name,
+      avatar: avatar,
+    };
+    updateUserProfile({ ...newData, token })
+      .then((data) => {
+        setCurrentUser(data.user);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Failed to update profile data", error);
+      });
   };
 
   // Registration handler
@@ -144,6 +167,11 @@ function App() {
     setActiveModal("login");
   };
 
+  // Function that opens change profile data modal
+  const handleChangeDataClick = () => {
+    setActiveModal("changeData");
+  };
+
   // Function that closes any active modal
   const closeActiveModal = () => {
     setActiveModal("");
@@ -162,7 +190,8 @@ function App() {
     // using (...) spread operator to unpack and add token to it
     addItem({ ...newCardData, token })
       .then((data) => {
-        setClothingItems([data, ...clothingItems]); // Add new item to front of list
+        console.log(data.item); // to check what kind of data is being returned by server
+        setClothingItems([data.item, ...clothingItems]); // Add new item to front of list
         resetForm();
         closeActiveModal();
       })
@@ -184,6 +213,29 @@ function App() {
       .catch((error) => {
         console.error("Failed to delete item", error);
       });
+  };
+
+  // Handler to like/dislike card
+  const handleCardLike = ({ _id, isLiked }) => {
+    const token = getToken();
+    // Check if card is not currently liked
+    !isLiked
+      ? apiKey
+          .addCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item)),
+            );
+          })
+          .catch((err) => console.log(err))
+      : api
+          .removeCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item)),
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   // ON PAGE REFRESH: UseEffect hook to check if there is a token in localStorage
@@ -303,6 +355,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -317,6 +370,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      handleChangeDataClick={handleChangeDataClick}
                     />
                   </ProtectedRoute>
                 }
@@ -354,6 +408,12 @@ function App() {
             onClose={closeActiveModal}
             buttonText="Log In"
             onLogin={handleLogin}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "changeData"}
+            onClose={closeActiveModal}
+            buttonText="Save changes"
+            onChangeData={handleProfileDataChange}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>
