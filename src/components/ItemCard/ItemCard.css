@@ -50,7 +50,16 @@
   padding: 2px 12px;
 }
 
-.card__like-btn {
+.card__btn {
+  background-color: transparent;
+  width: 18px;
+  height: 15px;
+  margin: 0px;
+  padding: 0px;
+  border: 0;
+}
+
+.card__like-image {
   width: 18px;
   height: 15px;
 }

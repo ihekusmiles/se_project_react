@@ -23,6 +23,8 @@ import {
   addItem,
   removeItem,
   updateUserProfile,
+  addCardLike,
+  removeCardLike,
 } from "../../utils/api";
 import * as auth from "../../utils/auth";
 
@@ -120,7 +122,7 @@ function App() {
     auth
       .authorize({ email, password })
       .then((data) => {
-        console.log(data);
+        // console.log(data); DELETE LINE
         if (data.token) {
           setToken(data.token); // Save the token to local storage
           return auth.getUserInfo(data.token); // Immediately fetch users info using the new token
@@ -190,7 +192,7 @@ function App() {
     // using (...) spread operator to unpack and add token to it
     addItem({ ...newCardData, token })
       .then((data) => {
-        console.log(data.item); // to check what kind of data is being returned by server
+        // console.log(data.item); // to check what kind of data is being returned by server
         setClothingItems([data.item, ...clothingItems]); // Add new item to front of list
         resetForm();
         closeActiveModal();
@@ -218,21 +220,24 @@ function App() {
   // Handler to like/dislike card
   const handleCardLike = ({ _id, isLiked }) => {
     const token = getToken();
+    // console.log(token); DELETE LINE
     // Check if card is not currently liked
     !isLiked
-      ? apiKey
-          .addCardLike(_id, token)
+      ? addCardLike({ itemID: _id, token: token })
           .then((updatedCard) => {
+            // console.log(updatedCard); DELETE LINE
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item)),
+              cards.map((item) => (item._id === _id ? updatedCard.like : item)),
             );
           })
           .catch((err) => console.log(err))
-      : api
-          .removeCardLike(_id, token)
+      : removeCardLike({ itemID: _id, token: token })
           .then((updatedCard) => {
+            // console.log(updatedCard); DELETE LINE
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item)),
+              cards.map((item) =>
+                item._id === _id ? updatedCard.dislike : item,
+              ),
             );
           })
           .catch((err) => console.log(err));
@@ -249,7 +254,7 @@ function App() {
     auth
       .getUserInfo(jwt)
       .then((data) => {
-        console.log("Token check response:", data); // Look at this in your console!
+        // console.log("Token check response:", data); // DELETE LINE  Look at this in your console!
 
         // Safely check if the backend wraps the data in a 'user' property, or sends it directly
         const userData = data.user ? data.user : data;
@@ -371,6 +376,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       handleChangeDataClick={handleChangeDataClick}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

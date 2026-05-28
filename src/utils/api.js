@@ -1,3 +1,5 @@
+import { authorize } from "./auth";
+
 // const baseUrl = "http://192.168.1.164:3001"; baseUrl to test responsive design on phone
 const baseUrl = "http://localhost:3001";
 const headers = {
@@ -58,4 +60,23 @@ export const updateUserProfile = ({ name, avatar, token }) => {
 
 // API call to like an item (adding a like)
 
-// export const addCardLike = ()
+export const addCardLike = ({ itemID, token }) => {
+  return fetch(`${baseUrl}/items/${itemID}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};
+
+// API call to remove card like
+export const removeCardLike = ({ itemID, token }) => {
+  return fetch(`${baseUrl}/items/${itemID}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};

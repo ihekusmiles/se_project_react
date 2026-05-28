@@ -7,6 +7,7 @@ export default function ClothesSection({
   handleCardClick,
   clothingItems,
   handleAddClick,
+  onCardLike,
 }) {
   // Subscribe ClothesSection to the context and extract currentUser
   const { currentUser } = useContext(CurrentUserContext);
@@ -38,6 +39,7 @@ export default function ClothesSection({
               key={item._id}
               item={item}
               onCardClick={handleCardClick}
+              handleLike={onCardLike}
             />
           );
         })}

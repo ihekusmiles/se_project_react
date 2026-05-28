@@ -6,11 +6,13 @@ function Profile({
   clothingItems,
   handleAddClick,
   handleChangeDataClick,
+  onCardLike,
 }) {
   return (
     <section className="profile">
       <Sidebar handleChangeDataClick={handleChangeDataClick} />
       <ClothesSection
+        onCardLike={onCardLike}
         clothingItems={clothingItems}
         handleCardClick={handleCardClick}
         handleAddClick={handleAddClick}
