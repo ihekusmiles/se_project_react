@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function Sidebar({ handleChangeDataClick }) {
+export default function Sidebar({ handleChangeDataClick, handleLogOutClick }) {
   const { currentUser } = useContext(CurrentUserContext);
   const location = useLocation();
   const changeData = () => {
@@ -17,8 +17,8 @@ export default function Sidebar({ handleChangeDataClick }) {
       <div className="sidebar__profile">
         <div className="sidebar__user-container">
           <img
-            src={currentUser.avatar}
-            alt={currentUser.name}
+            src={currentUser?.avatar}
+            alt={currentUser?.name}
             className="sidebar__avatar"
           />
           <p className="sidebar__username">{currentUser.name}</p>
@@ -33,7 +33,15 @@ export default function Sidebar({ handleChangeDataClick }) {
           >
             Change profile data
           </button>
-          <p className="sidebar__profile-logout">Log out</p>
+          <button
+            className="sidebar__profile-logout"
+            type="button"
+            onClick={() => {
+              handleLogOutClick();
+            }}
+          >
+            Log out
+          </button>
         </div>
       </div>
     </aside>

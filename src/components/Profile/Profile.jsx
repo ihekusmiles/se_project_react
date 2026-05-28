@@ -7,10 +7,14 @@ function Profile({
   handleAddClick,
   handleChangeDataClick,
   onCardLike,
+  handleLogOutClick,
 }) {
   return (
     <section className="profile">
-      <Sidebar handleChangeDataClick={handleChangeDataClick} />
+      <Sidebar
+        handleChangeDataClick={handleChangeDataClick}
+        handleLogOutClick={handleLogOutClick}
+      />
       <ClothesSection
         onCardLike={onCardLike}
         clothingItems={clothingItems}

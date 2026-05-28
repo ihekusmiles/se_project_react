@@ -174,6 +174,13 @@ function App() {
     setActiveModal("changeData");
   };
 
+  // Function that handles log out
+  const handleLogOutClick = () => {
+    removeToken();
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   // Function that closes any active modal
   const closeActiveModal = () => {
     setActiveModal("");
@@ -377,6 +384,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       handleChangeDataClick={handleChangeDataClick}
                       onCardLike={handleCardLike}
+                      handleLogOutClick={handleLogOutClick}
                     />
                   </ProtectedRoute>
                 }

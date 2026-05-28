@@ -8,7 +8,7 @@ function ItemModal({ activeModal, closeActiveModal, card, onConfirmation }) {
   // Subscribe ItemModal to the context and extra currentUser
   const { currentUser } = useContext(CurrentUserContext);
   // Checking if the current user is the owner of the current clothing
-  const isOwn = card.owner === currentUser._id;
+  const isOwn = card.owner === currentUser?._id;
   // Creating a variable for the delete button's classname
   const itemDeleteButton = `modal__delete-item-btn ${isOwn ? "" : "modal__delete-button_hidden"}`;
 

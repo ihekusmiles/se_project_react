@@ -6,10 +6,11 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemCard({ item, onCardClick, handleLike }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
   // console.log(currentUser); DELETE THIS LINE
-  // Check if current user already liked this card
-  const isLiked = item.likes.some((id) => id === currentUser._id);
+  // Check if current user already liked this card. Using optional chain '?' to
+  // access a property that might not exist --> if so returns undefined.
+  const isLiked = item.likes.some((id) => id === currentUser?._id);
   // Toggle between both images based on boolean value
   const likeImage = isLiked ? likedBtn : defaultLikeBtn;
 
@@ -31,17 +32,20 @@ function ItemCard({ item, onCardClick, handleLike }) {
         <div className="card__name-like-container">
           {" "}
           <h2 className="card__name">{item.name}</h2>
-          <button
-            type="button"
-            className="card__btn"
-            onClick={() => handleLike({ _id: item._id, isLiked })}
-          >
-            <img
-              className="card__like-image"
-              src={likeImage}
-              alt="Like button"
-            />
-          </button>
+          {/* Using conditional rendering to show like button ONLY if isLoggedIn is true */}
+          {isLoggedIn && (
+            <button
+              type="button"
+              className="card__btn"
+              onClick={() => handleLike({ _id: item._id, isLiked })}
+            >
+              <img
+                className="card__like-image"
+                src={likeImage}
+                alt="Like button"
+              />
+            </button>
+          )}
         </div>
       </div>
     </li>
