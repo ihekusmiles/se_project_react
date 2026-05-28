@@ -97,5 +97,5 @@ Mobile view interface for profile page:
 
 ## Plan on improving project
 
-- The ability to change profile's username.
-- Log in and log out implementation.
+- Improve responsive design. Some screen views require a few adjusments for better UI.
+- Update README.md with new screenshots, features, etc.
