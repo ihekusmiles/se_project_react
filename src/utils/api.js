@@ -1,10 +1,11 @@
-import { authorize } from "./auth";
-
 // const baseUrl = "http://192.168.1.164:3001"; baseUrl to test responsive design on phone
 const baseUrl = "http://localhost:3001";
-const headers = {
+
+// getHeaders function that accepts a token and returns headers object
+const getHeaders = (token) => ({
   "Content-Type": "application/json",
-};
+  authorization: `Bearer ${token}`,
+});
 
 // Function to handle server response
 export const handleServerResponse = (res) => {
@@ -20,10 +21,7 @@ export const getItems = () => {
 export const addItem = ({ name, imageUrl, weather, token }) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getHeaders(token),
     body: JSON.stringify({
       name,
       imageUrl,
@@ -36,10 +34,7 @@ export const addItem = ({ name, imageUrl, weather, token }) => {
 export const removeItem = (itemID, token) => {
   return fetch(`${baseUrl}/items/${itemID}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getHeaders(token),
   }).then(handleServerResponse);
 };
 
@@ -47,10 +42,7 @@ export const removeItem = (itemID, token) => {
 export const updateUserProfile = ({ name, avatar, token }) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH", // to meet project requirements
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getHeaders(token),
     body: JSON.stringify({
       name,
       avatar,
@@ -63,10 +55,7 @@ export const updateUserProfile = ({ name, avatar, token }) => {
 export const addCardLike = ({ itemID, token }) => {
   return fetch(`${baseUrl}/items/${itemID}/likes`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getHeaders(token),
   }).then(handleServerResponse);
 };
 
@@ -74,9 +63,6 @@ export const addCardLike = ({ itemID, token }) => {
 export const removeCardLike = ({ itemID, token }) => {
   return fetch(`${baseUrl}/items/${itemID}/likes`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: getHeaders(token),
   }).then(handleServerResponse);
 };

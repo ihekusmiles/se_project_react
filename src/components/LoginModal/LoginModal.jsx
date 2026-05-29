@@ -9,7 +9,6 @@ const LoginModal = ({ isOpen, onClose, buttonText, onLogin }) => {
     errors,
     setErrors,
     setIsValid,
-    resetForm,
     showErrors,
     setShowErrors,
   } = useFormWithValidation(defaultValues);

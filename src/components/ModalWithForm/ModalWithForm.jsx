@@ -26,7 +26,7 @@ function ModalWithForm({
             className="modal__dark-menu-closeBtn"
           />
         </button>
-        <form onSubmit={onSubmit} className={name}>
+        <form onSubmit={onSubmit} className={`modal__form ${name}`}>
           {children}
           <button className="modal__submit" type="submit">
             {buttonText}

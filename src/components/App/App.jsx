@@ -74,7 +74,9 @@ function App() {
     };
     updateUserProfile({ ...newData, token })
       .then((data) => {
-        setCurrentUser(data.user);
+        // Safely extra user data
+        const user = data.user ? data.user : data;
+        setCurrentUser(user);
         closeActiveModal();
       })
       .catch((error) => {
@@ -105,7 +107,7 @@ function App() {
         setCurrentUser(user);
         setIsLoggedIn(true);
         closeActiveModal();
-        navigate("/profile");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Registration failed", error);
@@ -132,7 +134,7 @@ function App() {
         setCurrentUser(user);
         setIsLoggedIn(true); // Log the user in
         closeActiveModal();
-        navigate("/profile");
+        navigate("/");
       })
       .catch(console.error);
   };

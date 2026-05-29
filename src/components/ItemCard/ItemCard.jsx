@@ -7,15 +7,11 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemCard({ item, onCardClick, handleLike }) {
   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
-  // console.log(currentUser); DELETE THIS LINE
   // Check if current user already liked this card. Using optional chain '?' to
   // access a property that might not exist --> if so returns undefined.
   const isLiked = item.likes.some((id) => id === currentUser?._id);
   // Toggle between both images based on boolean value
   const likeImage = isLiked ? likedBtn : defaultLikeBtn;
-
-  // console.log(item.likes); // Checks 'likes' array on console DELETE LATER
-
   const handleCardClick = () => {
     onCardClick(item);
   };
