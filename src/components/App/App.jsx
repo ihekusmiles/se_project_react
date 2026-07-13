@@ -188,8 +188,10 @@ function App() {
   // Function that creates an object of input values and then
   // adds that data to page using addItem method
   const onAddItem = (inputValues, resetForm) => {
+    console.log("onAddItem was called!");
     // Get token and pass it inside addItem
     const token = getToken();
+    console.log("Token in onAddItem:", token);
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,

@@ -1,5 +1,6 @@
 {
   "name": "se_project_react",
+  "homepage": "https://weatherwear.twilightparadox.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,8 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* coatedingoldenlove@weatherwear.twilightparadox.com:/home/coatedingoldenlove/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",

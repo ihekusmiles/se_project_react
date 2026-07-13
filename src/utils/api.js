@@ -1,5 +1,4 @@
-// const baseUrl = "http://192.168.1.164:3001"; baseUrl to test responsive design on phone
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "../utils/constants";
 
 // getHeaders function that accepts a token and returns headers object
 const getHeaders = (token) => ({
@@ -19,6 +18,7 @@ export const getItems = () => {
 
 // API call to POST item with token authorization
 export const addItem = ({ name, imageUrl, weather, token }) => {
+  console.log(token); //debugging purposes
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: getHeaders(token),
