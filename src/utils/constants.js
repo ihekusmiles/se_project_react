@@ -77,4 +77,4 @@ export const apiKey = "e235ceaf8aa7d02bfd460a31708ae26f";
 export const baseUrl =
   import.meta.env.MODE === "production"
     ? "https://api.weatherwear.twilightparadox.com"
-    : "https://api.weatherwear.twilightparadox.com";
+    : "http://localhost:3001";
