@@ -188,10 +188,8 @@ function App() {
   // Function that creates an object of input values and then
   // adds that data to page using addItem method
   const onAddItem = (inputValues, resetForm) => {
-    console.log("onAddItem was called!");
     // Get token and pass it inside addItem
     const token = getToken();
-    console.log("Token in onAddItem:", token);
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
@@ -200,7 +198,6 @@ function App() {
     // using (...) spread operator to unpack and add token to it
     addItem({ ...newCardData, token })
       .then((data) => {
-        // console.log(data.item); // to check what kind of data is being returned by server
         setClothingItems([data.item, ...clothingItems]); // Add new item to front of list
         resetForm();
         closeActiveModal();
