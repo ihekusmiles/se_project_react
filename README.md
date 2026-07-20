@@ -17,6 +17,10 @@ This project delivers an interactive web application that helps users decide wha
 
 ## Project links
 
+- Deployed project's domain name: weatherwear.twilightparadox.com
+
+- [Frontend Repository link to the project](https://github.com/ihekusmiles/se_project_react)
+
 - [Backend Repository link to the project](https://github.com/ihekusmiles/se_project_express)
 
 Check out [this video](https://www.loom.com/share/394c2f47126c46a9a8fe5bace967e1ac) where I describe and showcase the project and explain some technologies used.

@@ -18,7 +18,6 @@ export const getItems = () => {
 
 // API call to POST item with token authorization
 export const addItem = ({ name, imageUrl, weather, token }) => {
-  console.log(`This is the token: ${token}`); // DEBUGGING
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: getHeaders(token),
