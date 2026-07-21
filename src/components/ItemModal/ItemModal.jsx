@@ -12,6 +12,8 @@ function ItemModal({ activeModal, closeActiveModal, card, onConfirmation }) {
   // Creating a variable for the delete button's classname
   const itemDeleteButton = `modal__delete-item-btn ${isOwn ? "" : "modal__delete-button_hidden"}`;
 
+  console.log(`The card owner is: ${card.owner}`);
+  console.log(`The current user's id is: ${currentUser._id}`);
   return (
     <div className={`modal ${activeModal === "preview" && "modal__is-opened"}`}>
       <div className="modal__content_type_image">

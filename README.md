@@ -23,7 +23,7 @@ This project delivers an interactive web application that helps users decide wha
 
 - [Backend Repository link to the project](https://github.com/ihekusmiles/se_project_express)
 
-Check out [this video](https://www.loom.com/share/394c2f47126c46a9a8fe5bace967e1ac) where I describe and showcase the project and explain some technologies used.
+Check out [this video](https://www.loom.com/share/ce9aad96f17c4ee9acedeb166749392b) where I describe and showcase the fullstack project and explain some technologies used.
 
 - [Github Page link to the project](https://ihekusmiles.github.io/se_project_react/)
 
@@ -40,6 +40,8 @@ A weather-based clothing recommendation app that suggest appropriate garments ba
 - API integration
 - React Router
 - API Calls
+- Google Cloud VM
+- PM2
 
 **Figma**
 
@@ -103,3 +105,4 @@ Mobile view interface for profile page:
 
 - Improve responsive design. Some screen views require a few adjusments for better UI.
 - Update README.md with new screenshots, features, etc.
+- Implement ability for users to edit their names and avatar
